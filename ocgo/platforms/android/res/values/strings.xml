@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">opencouncilgo</string>
+    <string name="launcher_name">@string/app_name</string>
+    <string name="activity_name">@string/launcher_name</string>
+    <string name="mapbox_accesstoken">pk.eyJ1IjoiZ29yZ29uc3BlYWtzIiwiYSI6ImNqNW9qM2t0OTAwZ2Qyd28wMGswNjZ0NWwifQ.Sp_o2zYX_JUZNkcIyXIdMw</string>
+</resources>
