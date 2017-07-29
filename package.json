@@ -12,13 +12,13 @@
     "watch": "npm run clean && npm run watch-css & nodemon server -e js,jade",
     "start": "node server"
   },
-  "author": "Carl Higgs",
+  "author": "Team doo-wop",
   "license": "ISC",
   "dependencies": {
     "jade": "^1.11.0",
     "morgan": "^1.7.0",
     "nodemon": "^1.9.1",
-    "stylus": "^0.53.0"
+    "stylus": "^0.53.0",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",

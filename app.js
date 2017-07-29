@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-
+var template = require('jade').compileFile(__dirname + '/source/templates/homepage.jade')
 var app = express();
 
 // view engine setup
@@ -24,6 +24,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+
+app.get('/', function (req, res, next) {
+  try {
+    var html = template({ title: 'Home' })
+    res.send(html)
+  } catch (e) {
+    next(e)
+  }
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
