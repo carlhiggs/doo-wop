@@ -26,6 +26,7 @@
     "serve-favicon": "~2.4.2",
     "pg": "*",
     "proj4":"*",
-    "proj4leaflet":"*"
+    "proj4leaflet":"*",
+    "leaflet.ajax":"*"
   }
 }

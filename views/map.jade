@@ -1,15 +1,6 @@
 extends layout
 block content
-    form(action='/filter')
-        select(name='name')
-            option(disabled='', selected='', var='') Select One...
-            option(var myData = 'http://data.gov.au/geoserver/geelong-street-lights/wfs?request=GetFeature&typeName=e3b72b58_3875_4c5d_82a4_cb16dc0b0af8&outputFormat=json')                                 Geelong
-        input(type='submit', value='Go!')
-    #map
-    script.
-        var myData = 'http://data.gov.au/geoserver/geelong-street-lights/wfs?request=GetFeature&typeName=e3b72b58_3875_4c5d_82a4_cb16dc0b0af8&outputFormat=json'};
-        // Create variable to hold map element, give initial settings to map
-        var map = L.map('map',{ center: [-37.548798, 143.831323], zoom: 14});
-        // Add OpenStreetMap tile layer to map element
+  var map = L.map('map',{ center: [-37.548798, 143.831323], zoom: 14});
+    // Add OpenStreetMap tile layer to map element
         L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', { attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>' }).addTo(map);
-        L.geoJson(myData).addTo(map);
+        
