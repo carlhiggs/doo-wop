@@ -2,93 +2,14 @@ extends layout
 block content
     form(action='/filter')
         select(name='name')
-            option(disabled='', selected='', value='') Select One...
-            option(value='*')                                 all suburbs
-            option(value='Broomfield')                        Broomfield
-            option(value='Dean')                              Dean
-            option(value='Lake Wendouree')                    Lake Wendouree
-            option(value='Ballarat East')                     Ballarat East
-            option(value='Lake Gardens')                      Lake Gardens
-            option(value='Napoleons')                         Napoleons
-            option(value='Berringa')                          Berringa
-            option(value='Mount Helen')                       Mount Helen
-            option(value='Ross Creek (Vic.)')                 Ross Creek (Vic.)
-            option(value='Cambrian Hill')                     Cambrian Hill
-            option(value='Kingston (Vic.)')                   Kingston (Vic.)
-            option(value='Allendale')                         Allendale
-            option(value='Invermay Park')                     Invermay Park
-            option(value='Chepstowe')                         Chepstowe
-            option(value='Bungaree (Vic.)')                   Bungaree (Vic.)
-            option(value='Ballarat North')                    Ballarat North
-            option(value='Durham Lead')                       Durham Lead
-            option(value='Invermay (Vic.)')                   Invermay (Vic.)
-            option(value='Golden Point (Ballarat - Vic.)')    Golden Point (Ballarat - Vic.)
-            option(value='Lal Lal')                           Lal Lal
-            option(value='Smythesdale')                       Smythesdale
-            option(value='Garibaldi')                         Garibaldi
-            option(value='Bonshaw (Vic.)')                    Bonshaw (Vic.)
-            option(value='Carngham')                          Carngham
-            option(value='Learmonth (Vic.)')                  Learmonth (Vic.)
-            option(value='Wendouree')                         Wendouree
-            option(value='Scarsdale')                         Scarsdale
-            option(value='Dereel')                            Dereel
-            option(value='Delacombe')                         Delacombe
-            option(value='Cardigan')                          Cardigan
-            option(value='Enfield (Vic.)')                    Enfield (Vic.)
-            option(value='Elaine')                            Elaine
-            option(value='Blampied')                          Blampied
-            option(value='Linton')                            Linton
-            option(value='Gordon (Vic.)')                     Gordon (Vic.)
-            option(value='Mount Pleasant (Vic.)')             Mount Pleasant (Vic.)
-            option(value='Alfredton')                         Alfredton
-            option(value='Burrumbeet')                        Burrumbeet
-            option(value='Magpie')                            Magpie
-            option(value='Nerrina')                           Nerrina
-            option(value='Sebastopol (Vic.)')                 Sebastopol (Vic.)
-            option(value='Ballarat Central')                  Ballarat Central
-            option(value='Mount Clear')                       Mount Clear
-            option(value='Navigators')                        Navigators
-            option(value='Creswick')                          Creswick
-            option(value='Ascot (Ballarat - Vic.)')           Ascot (Ballarat - Vic.)
-            option(value='Brown Hill (Vic.)')                 Brown Hill (Vic.)
-            option(value='Dunnstown')                         Dunnstown
-            option(value='Newington (Vic.)')                  Newington (Vic.)
-            option(value='Clarendon (Vic.)')                  Clarendon (Vic.)
-            option(value='Bunkers Hill')                      Bunkers Hill
-            option(value='Smythes Creek')                     Smythes Creek
-            option(value='Black Hill (Vic.)')                 Black Hill (Vic.)
-            option(value='Warrenheip')                        Warrenheip
-            option(value='Mitchell Park (Vic.)')              Mitchell Park (Vic.)
-            option(value='Mount Rowan')                       Mount Rowan
-            option(value='Soldiers Hill (Vic.)')              Soldiers Hill (Vic.)
-            option(value='Redan')                             Redan
-            option(value='Canadian')                          Canadian
-            option(value='Miners Rest')                       Miners Rest
-            option(value='Cardigan Village')                  Cardigan Village
-            option(value='Buninyong')                         Buninyong
-            option(value='Bakery Hill')                       Bakery Hill
-            option(value='Haddon')                            Haddon
-        input(type='submit', value='Submit')
+            option(disabled='', selected='', var='') Select One...
+            option(var myData = 'http://data.gov.au/geoserver/geelong-street-lights/wfs?request=GetFeature&typeName=e3b72b58_3875_4c5d_82a4_cb16dc0b0af8&outputFormat=json')                                 Geelong
+        input(type='submit', value='Go!')
     #map
     script.
-        var myData = !{JSON.stringify(jsonData)};
+        var myData = 'http://data.gov.au/geoserver/geelong-street-lights/wfs?request=GetFeature&typeName=e3b72b58_3875_4c5d_82a4_cb16dc0b0af8&outputFormat=json'};
         // Create variable to hold map element, give initial settings to map
         var map = L.map('map',{ center: [-37.548798, 143.831323], zoom: 14});
         // Add OpenStreetMap tile layer to map element
         L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', { attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>' }).addTo(map);
-        L.geoJson(myData,{
-            style: function(feature){
-              var fillColor,
-                  walkability = feature.properties.f3;
-              if ( walkability > 2 ) fillColor = "#006837";
-              else if ( walkability > 1 ) fillColor = "#31a354";
-              else if ( walkability > 0 ) fillColor = "#78c679";
-              else if ( walkability > -1 ) fillColor = "#c2e699";
-              else if ( walkability > -4 ) fillColor = "#ffffcc";
-              else fillColor = "#f7f7f7";  // no data
-              return { color: "#999", weight: 1, fillColor: fillColor, fillOpacity: .6 };
-            },
-            onEachFeature: function( feature, layer ){
-              layer.bindPopup( "<strong>" + feature.properties.f2 + "</strong><br/>" + feature.properties.f3 + " (z-score)" )
-            }
-        }).addTo(map);
+        L.geoJson(myData).addTo(map);
