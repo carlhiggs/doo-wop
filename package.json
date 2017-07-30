@@ -27,6 +27,9 @@
     "pg": "*",
     "proj4":"*",
     "proj4leaflet":"*",
-    "leaflet.ajax":"*"
+    "leaflet.ajax":"*",
+    "simpleheat":"*",
+    "leaflet-heatmap":"*",
+    "heatmap":"*"
   }
 }
